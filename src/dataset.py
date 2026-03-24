@@ -1,8 +1,13 @@
+from pathlib import Path
+
 import torch
 import torch.utils.data
 from PIL import Image
 from torch.utils.data import Subset
 from torchvision import transforms
+
+# Icon assets live next to this module (works regardless of process cwd).
+_ASSET_DIR = Path(__file__).resolve().parent / "images"
 
 
 class ObservedDataset(torch.utils.data.Dataset):
@@ -30,8 +35,8 @@ class PostTreatmentDataset(torch.utils.data.Dataset):
         self._raw_image_dataset = raw_image_dataset
         self._post_treatment = post_treatment
         self._max_size = max_size
-        self._heart_icon = Image.open("images/white_heart.png").convert("L")
-        self._star_icon = Image.open("images/white_star.png").convert("L")
+        self._heart_icon = Image.open(_ASSET_DIR / "white_heart.png").convert("L")
+        self._star_icon = Image.open(_ASSET_DIR / "white_star.png").convert("L")
         self.transform = transforms.ToTensor()
 
     def __len__(self):
@@ -154,7 +159,7 @@ class DatasetCausalInference:
         self._coef4_outcome = torch.randn(dim_post_treatment)
 
     def _generate_covariate(self, sample_size: int):
-        """
+        r"""
         X_i \sim N(0, I)
         """
         covariate = torch.randn(sample_size, self._dim_covariate)
@@ -194,7 +199,7 @@ class DatasetCausalInference:
         return covariate_image
 
     def _generate_treatment(self, covariate: torch.Tensor, covariate_image: torch.Tensor):
-        """
+        r"""
         D_i \sim Bernoulli(p)
         p = \sigma(f_D(X_i, X_i^V))
         f_D(X_i, X_i^V) = X_i \coef_1 + X_i^V \coef_2
@@ -208,7 +213,7 @@ class DatasetCausalInference:
         return treatment
 
     def _generate_post_treatment(self, covariate: torch.Tensor, treatment: torch.Tensor):
-        """
+        r"""
         P_i^V = \sigma(f_P(X_i, D_i) + \epsilon_i^P)
         f_P(X_i, D_i) = X_i \coef_1 + D_i \coef_2
         """
@@ -239,7 +244,7 @@ class DatasetCausalInference:
         covariate_image: torch.Tensor,
         post_treatment: torch.Tensor,
     ):
-        """
+        r"""
         Y_i = f_Y(X_i, D_i, X_i^V, P_i^V) + \epsilon_i^Y
         f_Y(X_i, D_i, X_i^V, P_i^V) = X_i \coef_1 + D_i \coef_2 + X_i^V \coef_3 + P_i^V \coef_4
         """

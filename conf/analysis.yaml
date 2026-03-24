@@ -1,0 +1,6 @@
+hydra:
+  job:
+    chdir: false
+
+paths:
+  result_pickle: df_result.pkl

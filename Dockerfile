@@ -15,6 +15,7 @@ ENV UV_COMPILE_BYTECODE=1 \
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --extra dev --no-install-project
 
+COPY conf ./conf
 COPY src ./src
 COPY tests ./tests
 

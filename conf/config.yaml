@@ -1,0 +1,14 @@
+defaults:
+  - experiment: full
+  - _self_
+
+hydra:
+  job:
+    chdir: false
+
+seed: 42
+
+paths:
+  data_root: ./data
+  embedding_file: fashion_mnist_embedding.pt
+  result_pickle: df_result.pkl

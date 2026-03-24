@@ -70,6 +70,10 @@ dmypy.json
 .DS_Store
 Thumbs.db
 
+# --- Hydra ---
+outputs/
+multirun/
+
 # --- ML / saved models (large binaries) ---
 *.pt
 *.pth

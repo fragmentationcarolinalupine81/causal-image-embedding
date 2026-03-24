@@ -1,0 +1,31 @@
+# Sanity / CI-friendly settings
+num_seeds: 1
+n_train_fMNIST: 256
+n_test_fMNIST: 256
+
+dim_covariate: 3
+dim_covariate_image: 10
+dim_post_treatment: 20
+
+batch_size_autoencoder: 64
+
+raw_autoencoder:
+  epochs: 1
+  lr: 1.0e-3
+  weight_decay: 1.0e-5
+
+training_sample_size: 256
+test_sample_size: 256
+
+batch_size_causal_embedding: 64
+
+lr_embed: 1.0e-3
+epochs_embed: 2
+weight_decay_embed: 1.0e-5
+
+dim_covariate_image_embed: ${.dim_covariate_image}
+dim_post_treatment_embed: ${.dim_post_treatment}
+
+print_loss: false
+print_result_per_seed: false
+display_image: false
