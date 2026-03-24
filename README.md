@@ -4,6 +4,8 @@
   <img src="https://img.shields.io/badge/python-%3E%3D3.12-blue" alt="Python" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-526EAF.svg?logo=opensourceinitiative&logoColor=white" alt="License: MIT" /></a>
   <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff" /></a>
+  <a href="https://drive.google.com/file/d/169Q7OtMaH4HkOnYp7AAJrf0cbBm0q9Td"><img src="https://img.shields.io/badge/paper-Debiased_Image_Embedding-4285F4?logo=googledrive&logoColor=white" alt="Paper (PDF on Google Drive)" /></a>
+  <a href="https://drive.google.com/file/d/1ZecUEefvwy3h-oVJgvl-_YHJxySl0OeH"><img src="https://img.shields.io/badge/slides-Final_Project-34A853?logo=googledrive&logoColor=white" alt="Final project slides (Google Drive)" /></a>
 </p>
 
 Code for a causal inference where images act as both mediators and confounders: learn image embeddings (naive vs. debiased nets), then compare **biased**, **naive**, and **debiased** pipelines using regression, IPW, and doubly robust ATE estimators. 
@@ -12,6 +14,8 @@ Code for a causal inference where images act as both mediators and confounders: 
 
 | Resource | Description |
 |----------|-------------|
+| [Paper (PDF)](https://drive.google.com/file/d/169Q7OtMaH4HkOnYp7AAJrf0cbBm0q9Td) | *Debiased Image Embedding* — Google Drive |
+| [Final project slides](https://drive.google.com/file/d/1ZecUEefvwy3h-oVJgvl-_YHJxySl0OeH) | Presentation — Google Drive |
 | [`conf/`](conf/) | Hydra defaults; `experiment=full` or `experiment=fast` presets |
 | [`src/main_experiment.py`](src/main_experiment.py) | Hydra entry: end-to-end experiment |
 | [`src/main_analysis.py`](src/main_analysis.py) | Hydra entry: summarize `df_result.pkl` |
